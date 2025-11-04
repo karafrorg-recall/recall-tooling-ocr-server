@@ -18,7 +18,6 @@ test --test_tag_filters=-integration
 # bazel configs to explicitly target a platform
 common:host --platforms @local_config_platform//:host
 
-# bazel config to explicitly disable stamping (hide version information at build time)
-common:nostamp --nostamp --workspace_status_command=
+common --enable_bzlmod
 
 try-import %workspace%/.bazeloverwriterc

@@ -10,12 +10,6 @@ required_tags = [
 ]
 
 gazelle(
-    name = "gazelle_generate",
-    build_tags = required_tags,
-    visibility = ["//visibility:public"],
-)
-
-gazelle(
     name = "gazelle_check",
     build_tags = required_tags,
     command = "fix",
@@ -41,17 +35,6 @@ sh_template(
         "@@KEEP_SORTED@@": "$(rootpath @com_github_google_keep_sorted//:keep-sorted)",
     },
     template = "keep_sorted.sh.in",
-)
-
-sh_template(
-    name = "go_mod_tidy",
-    data = [
-        ":go_bin_for_host",
-    ],
-    substitutions = {
-        "@@GO@@": "$(rootpath :go_bin_for_host)",
-    },
-    template = "go_tidy.sh.in",
 )
 
 sh_template(
@@ -165,17 +148,6 @@ sh_template(
 )
 
 sh_template(
-    name = "cli_docgen",
-    data = [
-        "//hack/clidocgen",
-    ],
-    substitutions = {
-        "@@CLIDOCGEN@@": "$(rootpath //hack/clidocgen:clidocgen)",
-    },
-    template = "cli_docgen.sh.in",
-)
-
-sh_template(
     name = "unused_gh_actions",
     data = [],
     substitutions = {},
@@ -202,21 +174,11 @@ sh_template(
     template = "go_generate.sh.in",
 )
 
-sh_template(
-    name = "entrypoint",
-    data = [],
-    substitutions = {},
-    template = "entrypoint.sh.in",
-    visibility = ["//visibility:public"],
-)
-
 multirun(
     name = "tidy",
     commands = [
         ":shfmt",
         ":gofumpt",
-        ":go_mod_tidy",
-        ":gazelle_generate",
         #":buildifier_fix",
         ":keep_sorted",
     ],
@@ -266,19 +228,9 @@ multirun(
 )
 
 multirun(
-    name = "generate_docs",
-    commands = [
-        ":cli_docgen",
-    ],
-    jobs = 0,  # execute concurrently
-    visibility = ["//visibility:public"],
-)
-
-multirun(
     name = "generate",
     commands = [
         ":generate_files",
-        ":generate_docs",
     ],
     jobs = 1,  # execute sequentially
     visibility = ["//visibility:public"],

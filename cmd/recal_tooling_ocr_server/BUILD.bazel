@@ -5,4 +5,8 @@ go_library(
     srcs = ["main.go"],
     importpath = "github.com/karafrorg-recall/recall-tooling-ocr-server/cmd/recal_tooling_ocr_server",
     visibility = ["//visibility:public"],
+    deps = [
+        "//api/proto/recall_tooling_ocr_server/v1:recall_tooling_ocr_server",
+        "@@grpc_ecosystem_grpc_gateway+//runtime",
+    ],
 )

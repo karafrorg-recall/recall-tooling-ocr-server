@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+package recall_tooling_ocr_server.v1;
+
+import "google/api/annotations.proto"; // add http annotations
+
+option go_package = "github.com/karafrorg-recall/recall-tooling-ocr-server/api/proto/recall_tooling_ocr_server/v1";
+
+service RecallToolingOcrServer {
+  rpc ProcessImage(ProcessImageRequest) returns (ProcessImageResponse) {
+    option (google.api.http) = {
+      post: "/v1/process_image"
+      body: "*"
+    };
+  }
+}
+
+message Metadata {
+  string filename = 1;
+  string filetype = 2;
+}
+
+message ProcessImageRequest {
+  oneof data {
+    bytes chunk = 1;
+    Metadata metadata = 2;
+  }
+}
+
+message ProcessImageResponse {
+  string text = 1;
+}
