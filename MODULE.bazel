@@ -22,7 +22,8 @@ bazel_dep(name = "rules_proto_grpc", version = "5.8.0")
 bazel_dep(name = "rules_proto_grpc_grpc_gateway", version = "5.8.0")
 bazel_dep(name = "googleapis-go", version = "1.0.0")
 bazel_dep(name = "rules_buf", version = "0.5.2")
-bazel_dep(name = "rules_proto_grpc_go", version = "5.8.0")
+bazel_dep(name = "rules_cc", version = "0.2.14")
+bazel_dep(name = "rules_foreign_cc", version = "0.15.1")
 
 bazel_lib = use_extension("@aspect_bazel_lib//lib:extensions.bzl", "toolchains")
 bazel_lib.yq()
@@ -49,9 +50,11 @@ use_repo(
     "build_buf_go_protovalidate",
     "cc_mvdan_gofumpt",
     "com_github_envoyproxy_protoc_gen_validate",
+    "com_github_go_playground_validator_v10",
     "com_github_golangci_golangci_lint_v2",
     "com_github_google_keep_sorted",
     "com_github_katexochen_sh_v3",
+    "com_github_otiai10_gosseract",
     "com_github_rhysd_actionlint",
     "org_golang_x_term",
     "org_golang_x_tools",
@@ -59,6 +62,11 @@ use_repo(
 )
 
 buf = use_extension("@rules_buf//buf:extensions.bzl", "buf")
-buf.toolchains(
-    version = "v1.50.0",
-)
+buf.toolchains(version = "v1.50.0")
+
+leptonica_ext = use_extension("//third_party/leptonica:leptonica_deps.bzl", "leptonica_deps")
+use_repo(leptonica_ext, "leptonica")
+
+# Tesseract OCR library
+tesseract_ext = use_extension("//third_party/tesseract:tesseract_deps.bzl", "tesseract_deps")
+use_repo(tesseract_ext, "tesseract")

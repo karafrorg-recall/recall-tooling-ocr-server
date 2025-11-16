@@ -1,0 +1,9 @@
+load("@rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "configs",
+    srcs = ["loader.go"],
+    embedsrcs = ["default_config.toml"],
+    importpath = "github.com/karafrorg-recall/recall-tooling-ocr-server/configs",
+    visibility = ["//visibility:public"],
+)

@@ -182,9 +182,12 @@
     "https://bcr.bazel.build/modules/rules_cc/0.0.9/MODULE.bazel": "836e76439f354b89afe6a911a7adf59a6b2518fafb174483ad78a2a2fde7b1c5",
     "https://bcr.bazel.build/modules/rules_cc/0.1.1/MODULE.bazel": "2f0222a6f229f0bf44cd711dc13c858dad98c62d52bd51d8fc3a764a83125513",
     "https://bcr.bazel.build/modules/rules_cc/0.1.5/MODULE.bazel": "88dfc9361e8b5ae1008ac38f7cdfd45ad738e4fa676a3ad67d19204f045a1fd8",
+    "https://bcr.bazel.build/modules/rules_cc/0.2.14/MODULE.bazel": "353c99ed148887ee89c54a17d4100ae7e7e436593d104b668476019023b58df8",
+    "https://bcr.bazel.build/modules/rules_cc/0.2.14/source.json": "55d0a4587c5592fad350f6e698530f4faf0e7dd15e69d43f8d87e220c78bea54",
     "https://bcr.bazel.build/modules/rules_cc/0.2.4/MODULE.bazel": "1ff1223dfd24f3ecf8f028446d4a27608aa43c3f41e346d22838a4223980b8cc",
-    "https://bcr.bazel.build/modules/rules_cc/0.2.4/source.json": "2bd87ef9b41d4753eadf65175745737135cba0e70b479bdc204ef0c67404d0c4",
     "https://bcr.bazel.build/modules/rules_foreign_cc/0.10.1/MODULE.bazel": "b9527010e5fef060af92b6724edb3691970a5b1f76f74b21d39f7d433641be60",
+    "https://bcr.bazel.build/modules/rules_foreign_cc/0.15.1/MODULE.bazel": "c2c60d26c79fda484acb95cdbec46e89d6b28b4845cb277160ce1e0c8622bb88",
+    "https://bcr.bazel.build/modules/rules_foreign_cc/0.15.1/source.json": "a161811a63ba8a859086da3b7ff3ad04f2e9c255d7727b41087103fc0eb22f55",
     "https://bcr.bazel.build/modules/rules_foreign_cc/0.9.0/MODULE.bazel": "c9e8c682bf75b0e7c704166d79b599f93b72cfca5ad7477df596947891feeef6",
     "https://bcr.bazel.build/modules/rules_fuzzing/0.5.2/MODULE.bazel": "40c97d1144356f52905566c55811f13b299453a14ac7769dfba2ac38192337a8",
     "https://bcr.bazel.build/modules/rules_go/0.33.0/MODULE.bazel": "a2b11b64cd24bf94f57454f53288a5dacfe6cb86453eee7761b7637728c1910c",
@@ -361,6 +364,64 @@
         "recordedRepoMappingEntries": []
       }
     },
+    "//third_party/leptonica:leptonica_deps.bzl%leptonica_deps": {
+      "general": {
+        "bzlTransitiveDigest": "jrEPds7r/FY65Wzt5NzvEO10+42pSYjfrD8bfJ4c6I8=",
+        "usagesDigest": "C8BX6nHinaGWA6f35L6bpZi+TelwlflalkNfnB7Q5EA=",
+        "recordedFileInputs": {},
+        "recordedDirentsInputs": {},
+        "envVariables": {},
+        "generatedRepoSpecs": {
+          "leptonica": {
+            "repoRuleId": "@@bazel_tools//tools/build_defs/repo:http.bzl%http_archive",
+            "attributes": {
+              "urls": [
+                "https://github.com/DanBloomberg/leptonica/archive/refs/tags/1.84.1.tar.gz"
+              ],
+              "sha256": "ecd7a868403b3963c4e33623595d77f2c87667e2cfdd9b370f87729192061bef",
+              "strip_prefix": "leptonica-1.84.1",
+              "build_file": "@@//third_party/leptonica:leptonica_build.bzl"
+            }
+          }
+        },
+        "recordedRepoMappingEntries": [
+          [
+            "",
+            "bazel_tools",
+            "bazel_tools"
+          ]
+        ]
+      }
+    },
+    "//third_party/tesseract:tesseract_deps.bzl%tesseract_deps": {
+      "general": {
+        "bzlTransitiveDigest": "CS1E0AO3A7InJ5if8PaOihWvvRQ8mGgTXHRqRWJBpsg=",
+        "usagesDigest": "o5m1cYn5hxfA2K7Wu00R/CLjy9d2vFzMrbj9kq+V5Hg=",
+        "recordedFileInputs": {},
+        "recordedDirentsInputs": {},
+        "envVariables": {},
+        "generatedRepoSpecs": {
+          "tesseract": {
+            "repoRuleId": "@@bazel_tools//tools/build_defs/repo:http.bzl%http_archive",
+            "attributes": {
+              "urls": [
+                "https://github.com/tesseract-ocr/tesseract/archive/refs/tags/5.3.4.tar.gz"
+              ],
+              "sha256": "141afc12b34a14bb691a939b4b122db0d51bd38feda7f41696822bacea7710c7",
+              "strip_prefix": "tesseract-5.3.4",
+              "build_file": "@@//third_party/tesseract:tesseract_build.bzl"
+            }
+          }
+        },
+        "recordedRepoMappingEntries": [
+          [
+            "",
+            "bazel_tools",
+            "bazel_tools"
+          ]
+        ]
+      }
+    },
     "@@grpc_ecosystem_grpc_gateway+//:non_module_deps.bzl%non_module_deps": {
       "general": {
         "bzlTransitiveDigest": "Ew9PKHTL5ju0wvMPSM+U94QB3U7O4i769mZfVIpOgrE=",
@@ -421,7 +482,7 @@
     },
     "@@rules_apple+//apple:apple.bzl%provisioning_profile_repository_extension": {
       "general": {
-        "bzlTransitiveDigest": "CUIdbxeGZ+GPvVqbCkw9HQeJLsqeG3I1pJQ+oyZr/D4=",
+        "bzlTransitiveDigest": "DBjF8z9KnkAVkDon8si62fhfjje60FibbeIt+zE+BWw=",
         "usagesDigest": "vsJl8Rw5NL+5Ag2wdUDoTeRF/5klkXO8545Iy7U1Q08=",
         "recordedFileInputs": {},
         "recordedDirentsInputs": {},
@@ -470,6 +531,16 @@
           ],
           [
             "rules_cc+",
+            "cc_compatibility_proxy",
+            "rules_cc++compatibility_proxy+cc_compatibility_proxy"
+          ],
+          [
+            "rules_cc+",
+            "rules_cc",
+            "rules_cc+"
+          ],
+          [
+            "rules_cc++compatibility_proxy+cc_compatibility_proxy",
             "rules_cc",
             "rules_cc+"
           ],
@@ -3270,7 +3341,7 @@
     },
     "@@rules_rust+//crate_universe/private:internal_extensions.bzl%cu_nr": {
       "general": {
-        "bzlTransitiveDigest": "U3mcRiWa5DX2WLch/BdphuDxxpC8NmjCzaXa0uF8zsw=",
+        "bzlTransitiveDigest": "ikmIglR0O40DHKrC8Jpm3z4Szs94aJajTgB7kEAIBQw=",
         "usagesDigest": "h9wqdPgSnpDxdRNP6kO+DMoTuAWtxtek2SnJOOL321c=",
         "recordedFileInputs": {},
         "recordedDirentsInputs": {},
@@ -3369,6 +3440,16 @@
           ],
           [
             "rules_cc+",
+            "cc_compatibility_proxy",
+            "rules_cc++compatibility_proxy+cc_compatibility_proxy"
+          ],
+          [
+            "rules_cc+",
+            "rules_cc",
+            "rules_cc+"
+          ],
+          [
+            "rules_cc++compatibility_proxy+cc_compatibility_proxy",
             "rules_cc",
             "rules_cc+"
           ],

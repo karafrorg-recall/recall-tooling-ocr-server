@@ -9,23 +9,7 @@ load("@gazelle//:def.bzl", "gazelle")
 # gazelle:resolve proto go google/api/annotations.proto @googleapis//google/api:annotations_go_proto
 # gazelle:resolve proto proto google/api/field_behavior.proto @googleapis//google/api:field_behavior_proto
 # gazelle:resolve proto go google/api/field_behavior.proto @googleapis//google/api:field_behavior_go_proto
-gazelle(
-    name = "gazelle",
-    args = [
-        "-go_proto_compiler=@rules_go//proto:go_proto",
-        "-go_grpc_compiler=@rules_go//proto:go_grpc_v2",
-    ],
-)
-
-gazelle(
-    name = "gazelle-update-repos",
-    args = [
-        "-from_file=go.work",
-        "-to_macro=deps.bzl%go_dependencies",
-        "-prune",
-    ],
-    command = "update-repos",
-)
+gazelle(name = "gazelle")
 
 alias(
     name = "check",

@@ -1,0 +1,13 @@
+"""Tesseract OCR integration"""
+
+alias(
+    name = "tesseract",
+    actual = "@tesseract//:tesseract",
+    visibility = ["//visibility:public"],
+)
+
+alias(
+    name = "libtesseract",
+    actual = "@tesseract//:tesseract",
+    visibility = ["//visibility:public"],
+)
