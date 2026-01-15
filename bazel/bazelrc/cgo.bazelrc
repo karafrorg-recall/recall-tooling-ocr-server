@@ -1,0 +1,4 @@
+# Configuration for building gosseract
+# Disable sandbox for cgo compilation to allow access to system libraries
+build:cgo_build --strategy=GoCompilePkg=standalone
+

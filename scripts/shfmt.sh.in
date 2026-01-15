@@ -19,8 +19,10 @@ cd "${BUILD_WORKSPACE_DIRECTORY}" || exit 1
 ###### script body ######
 
 scriptsStr=$(${shfmt} -f "${BUILD_WORKSPACE_DIRECTORY}")
-readarray -t <<< "${scriptsStr}"
-scripts=("${MAPFILE[@]}")
+scripts=()
+while IFS= read -r line; do
+  scripts+=("$line")
+done <<< "${scriptsStr}"
 
 excludeDirs=(
   "build"
@@ -31,7 +33,7 @@ echo "The following scripts are excluded and won't be formatted with shfmt:"
 for exclude in "${excludeDirs[@]}"; do
   for i in "${!scripts[@]}"; do
     if [[ ${scripts[i]} == "${BUILD_WORKSPACE_DIRECTORY}/${exclude}"* ]]; then
-      echo "  ${scripts[i]}"
+      printf "\t%s\n" "${scripts[i]}"
       unset 'scripts[i]'
     fi
   done
@@ -39,7 +41,7 @@ done
 
 echo "Formatting the following scripts with shfmt:"
 for script in "${scripts[@]}"; do
-  echo "  ${script}"
+  printf "\t%s\n" "${script}"
 done
 
 ${shfmt} -i 2 -s -w -sr "${scripts[@]}"

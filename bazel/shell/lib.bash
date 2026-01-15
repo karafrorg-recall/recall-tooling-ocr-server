@@ -2,7 +2,6 @@
 
 set -euo pipefail
 set -o errtrace
-shopt -s inherit_errexit
 
 function printErr {
   echo -e "\033[0;31mERROR:\033[0m ${1}"

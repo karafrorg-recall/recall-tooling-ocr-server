@@ -21,7 +21,7 @@ bazel_dep(name = "googleapis", version = "0.0.0-20251003-2193a2bf")
 bazel_dep(name = "rules_proto_grpc", version = "5.8.0")
 bazel_dep(name = "rules_proto_grpc_grpc_gateway", version = "5.8.0")
 bazel_dep(name = "googleapis-go", version = "1.0.0")
-bazel_dep(name = "rules_buf", version = "0.5.2")
+bazel_dep(name = "rules_buf", version = "0.5.2",)
 bazel_dep(name = "rules_cc", version = "0.2.14")
 bazel_dep(name = "rules_foreign_cc", version = "0.15.1")
 
@@ -45,16 +45,20 @@ go_sdk.download(version = "1.25.3")
 
 go_deps = use_extension("@gazelle//:extensions.bzl", "go_deps")
 go_deps.from_file(go_work = "//:go.work")
+
+# Load custom gosseract wrapper with patches for leptonica
+gosseract_repos = use_extension("//bazel/repositories:gosseract.bzl", "gosseract_repos_ext")
+use_repo(gosseract_repos, "gosseract_local")
+
 use_repo(
     go_deps,
     "build_buf_go_protovalidate",
     "cc_mvdan_gofumpt",
     "com_github_envoyproxy_protoc_gen_validate",
-    "com_github_go_playground_validator_v10",
     "com_github_golangci_golangci_lint_v2",
     "com_github_google_keep_sorted",
     "com_github_katexochen_sh_v3",
-    "com_github_otiai10_gosseract",
+    "com_github_otiai10_gosseract_v2",
     "com_github_rhysd_actionlint",
     "org_golang_x_term",
     "org_golang_x_tools",
@@ -62,7 +66,15 @@ use_repo(
 )
 
 buf = use_extension("@rules_buf//buf:extensions.bzl", "buf")
-buf.toolchains(version = "v1.50.0")
+buf.toolchains(version = "v1.50.0", sha256 = "736e74d1697dcf253bc60b2f0fb4389c39dbc7be68472a7d564a953df8b19d12")
+
+# zlib compression library (needed by libpng and leptonica)
+zlib_ext = use_extension("//third_party/zlib:zlib_deps.bzl", "zlib_deps")
+use_repo(zlib_ext, "zlib")
+
+# libpng (needed by leptonica for PNG support)
+libpng_ext = use_extension("//third_party/libpng:libpng_deps.bzl", "libpng_deps")
+use_repo(libpng_ext, "libpng")
 
 leptonica_ext = use_extension("//third_party/leptonica:leptonica_deps.bzl", "leptonica_deps")
 use_repo(leptonica_ext, "leptonica")
@@ -70,3 +82,8 @@ use_repo(leptonica_ext, "leptonica")
 # Tesseract OCR library
 tesseract_ext = use_extension("//third_party/tesseract:tesseract_deps.bzl", "tesseract_deps")
 use_repo(tesseract_ext, "tesseract")
+
+# Tessdata (trained data files for Tesseract)
+tessdata_ext = use_extension("//third_party/tessdata:tessdata_deps.bzl", "tessdata_deps")
+use_repo(tessdata_ext, "tessdata_eng")
+

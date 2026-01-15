@@ -1,22 +1,28 @@
-# editor files
-.vscode/
-.idea/
+# Bazel output directories
+bazel-bin
+bazel-out
+bazel-testlogs
+bazel-recall-tooling-ocr-server
 
-# git
-.git/
-.githooks/
+# Git
+.git
 .gitignore
 
-# generated
-bin/
-out/
+# IDE
+.idea
+*.iml
+.vscode
 
-# docs
-api/
-**/*.md
+# Test files
+*.png
+*.jpg
+*.jpeg
 
-# other files not needed for build
-.editorconfig
-.golangci.yml
-Makefile
-tools.go
+# Documentation
+docs/
+*.md
+
+# Local development
+.env
+.envrc
+

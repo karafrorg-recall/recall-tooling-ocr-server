@@ -1,0 +1,9 @@
+"""Tessdata BUILD file - provides tessdata files for Tesseract OCR"""
+
+filegroup(
+    name = "eng",
+    srcs = ["@tessdata_eng//file:eng.traineddata"],
+    visibility = ["//visibility:public"],
+)
+
+

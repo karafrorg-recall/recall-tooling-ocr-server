@@ -10,6 +10,12 @@ required_tags = [
 ]
 
 gazelle(
+    name = "gazelle_generate",
+    build_tags = required_tags,
+    visibility = ["//visibility:public"],
+)
+
+gazelle(
     name = "gazelle_check",
     build_tags = required_tags,
     command = "fix",
@@ -38,6 +44,17 @@ sh_template(
 )
 
 sh_template(
+    name = "go_mod_tidy",
+    data = [
+        ":go_bin_for_host",
+    ],
+    substitutions = {
+        "@@GO@@": "$(rootpath :go_bin_for_host)",
+    },
+    template = "go_tidy.sh.in",
+)
+
+sh_template(
     name = "shfmt",
     data = [
         "@com_github_katexochen_sh_v3//cmd/shfmt",
@@ -57,7 +74,7 @@ alias(
     name = "com_github_koalaman_shellcheck",
     actual = select({
         "@rules_go//go/platform:darwin_amd64": "@com_github_koalaman_shellcheck_darwin_amd64//:shellcheck",
-        "@rules_go//go/platform:darwin_arm64": ":shellcheck_noop_warning",
+        "@rules_go//go/platform:darwin_arm64": "@com_github_koalaman_shellcheck_darwin_arm64//:shellcheck",
         "@rules_go//go/platform:linux_amd64": "@com_github_koalaman_shellcheck_linux_amd64//:shellcheck",
         "@rules_go//go/platform:linux_arm64": "@com_github_koalaman_shellcheck_linux_arm64//:shellcheck",
     }),
@@ -174,11 +191,21 @@ sh_template(
     template = "go_generate.sh.in",
 )
 
+sh_template(
+    name = "entrypoint",
+    data = [],
+    substitutions = {},
+    template = "entrypoint.sh.in",
+    visibility = ["//visibility:public"],
+)
+
 multirun(
     name = "tidy",
     commands = [
         ":shfmt",
         ":gofumpt",
+        ":go_mod_tidy",
+        ":gazelle_generate",
         #":buildifier_fix",
         ":keep_sorted",
     ],
@@ -193,10 +220,6 @@ multirun(
         ":gazelle_check",
         ":unused_gh_actions",
     ] + select({
-        "@rules_go//go/platform:darwin_arm64": [
-            ":shellcheck_noop_warning",
-            ":actionlint_no_shellcheck",
-        ],
         "//conditions:default": [
             ":shellcheck",
             ":actionlint",

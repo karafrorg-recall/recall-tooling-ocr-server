@@ -1,8 +1,24 @@
-load("@rules_go//go:def.bzl", "go_library")
+load("@rules_go//go:def.bzl", "go_binary", "go_library")
 
-go_library(
+go_binary(
     name = "recal_tooling_ocr_server",
-    srcs = ["main.go"],
+    data = ["@tessdata_eng//file:eng.traineddata"],
+    embed = [":recal_tooling_ocr_server_lib"],
+    env = {
+        "TESSDATA_RLOCATION": "$(rlocationpath @tessdata_eng//file:eng.traineddata)",
+    },
     importpath = "github.com/karafrorg-recall/recall-tooling-ocr-server/cmd/recal_tooling_ocr_server",
     visibility = ["//visibility:public"],
+)
+
+go_library(
+    name = "recal_tooling_ocr_server_lib",
+    srcs = ["main.go"],
+    cgo = True,
+    importpath = "github.com/karafrorg-recall/recall-tooling-ocr-server/cmd/recal_tooling_ocr_server",
+    visibility = ["//visibility:private"],
+    deps = [
+        "@gosseract_local//:gosseract",
+        "@rules_go//go/runfiles",
+    ],
 )

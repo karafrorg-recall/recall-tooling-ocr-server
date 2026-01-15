@@ -1,0 +1,8 @@
+"""zlib BUILD file"""
+
+alias(
+    name = "zlib",
+    actual = "@zlib//:zlib",
+    visibility = ["//visibility:public"],
+)
+

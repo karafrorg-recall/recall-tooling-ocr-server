@@ -320,6 +320,22 @@
   },
   "selectedYankedVersions": {},
   "moduleExtensions": {
+    "//bazel/repositories:gosseract.bzl%gosseract_repos_ext": {
+      "general": {
+        "bzlTransitiveDigest": "MI01eTTTERc3QuPpb875bgr3jnRolwkoKrAH5hm5EEo=",
+        "usagesDigest": "CgYf1QbflS6/b/Boe+/Y/rv/9L7Q6tKFwAx2QD7siu0=",
+        "recordedFileInputs": {},
+        "recordedDirentsInputs": {},
+        "envVariables": {},
+        "generatedRepoSpecs": {
+          "gosseract_local": {
+            "repoRuleId": "@@//bazel/repositories:gosseract.bzl%gosseract_wrapper",
+            "attributes": {}
+          }
+        },
+        "recordedRepoMappingEntries": []
+      }
+    },
     "//bazel/toolchains:shellcheck_repos.bzl%shellcheck_repos": {
       "general": {
         "bzlTransitiveDigest": "7y5Vp3etyNcOkW+IgY7EBe2hnrRhj8yEkPIAe33OYxs=",
@@ -393,9 +409,66 @@
         ]
       }
     },
+    "//third_party/libpng:libpng_deps.bzl%libpng_deps": {
+      "general": {
+        "bzlTransitiveDigest": "2csHobMZFAgFEHZJ0ll0hWp5qyq+1nBBcinVlJ5Ri98=",
+        "usagesDigest": "rNSnxnXts4KZYhw/4cBUmpCBas09nfV2Lnn6xQ7jP8s=",
+        "recordedFileInputs": {},
+        "recordedDirentsInputs": {},
+        "envVariables": {},
+        "generatedRepoSpecs": {
+          "libpng": {
+            "repoRuleId": "@@bazel_tools//tools/build_defs/repo:http.bzl%http_archive",
+            "attributes": {
+              "urls": [
+                "https://github.com/pnggroup/libpng/archive/refs/tags/v1.6.43.tar.gz"
+              ],
+              "sha256": "fecc95b46cf05e8e3fc8a414750e0ba5aad00d89e9fdf175e94ff041caf1a03a",
+              "strip_prefix": "libpng-1.6.43",
+              "build_file": "@@//third_party/libpng:libpng_build.bzl"
+            }
+          }
+        },
+        "recordedRepoMappingEntries": [
+          [
+            "",
+            "bazel_tools",
+            "bazel_tools"
+          ]
+        ]
+      }
+    },
+    "//third_party/tessdata:tessdata_deps.bzl%tessdata_deps": {
+      "general": {
+        "bzlTransitiveDigest": "m3l3nK5J4qCb4QPPwRRakD/qnTaW7j7KUdFOHHav1l0=",
+        "usagesDigest": "Zq1MaqQ/qlZLYBHMSGPsSSE01Hg2vLFTRoDB0xFg0YY=",
+        "recordedFileInputs": {},
+        "recordedDirentsInputs": {},
+        "envVariables": {},
+        "generatedRepoSpecs": {
+          "tessdata_eng": {
+            "repoRuleId": "@@bazel_tools//tools/build_defs/repo:http.bzl%http_file",
+            "attributes": {
+              "urls": [
+                "https://github.com/tesseract-ocr/tessdata_fast/raw/main/eng.traineddata"
+              ],
+              "sha256": "7d4322bd2a7749724879683fc3912cb542f19906c83bcc1a52132556427170b2",
+              "downloaded_file_path": "eng.traineddata"
+            }
+          }
+        },
+        "recordedRepoMappingEntries": [
+          [
+            "",
+            "bazel_tools",
+            "bazel_tools"
+          ]
+        ]
+      }
+    },
     "//third_party/tesseract:tesseract_deps.bzl%tesseract_deps": {
       "general": {
-        "bzlTransitiveDigest": "CS1E0AO3A7InJ5if8PaOihWvvRQ8mGgTXHRqRWJBpsg=",
+        "bzlTransitiveDigest": "gpzVisNLEgcmgO50ya+t6u98bQ8Vd6sPr5hMnTl5lBA=",
         "usagesDigest": "o5m1cYn5hxfA2K7Wu00R/CLjy9d2vFzMrbj9kq+V5Hg=",
         "recordedFileInputs": {},
         "recordedDirentsInputs": {},
@@ -410,6 +483,35 @@
               "sha256": "141afc12b34a14bb691a939b4b122db0d51bd38feda7f41696822bacea7710c7",
               "strip_prefix": "tesseract-5.3.4",
               "build_file": "@@//third_party/tesseract:tesseract_build.bzl"
+            }
+          }
+        },
+        "recordedRepoMappingEntries": [
+          [
+            "",
+            "bazel_tools",
+            "bazel_tools"
+          ]
+        ]
+      }
+    },
+    "//third_party/zlib:zlib_deps.bzl%zlib_deps": {
+      "general": {
+        "bzlTransitiveDigest": "YCmiPSMHA3NJuZY29uzEtlq7gg1oK+PjUAtTj2pXoPE=",
+        "usagesDigest": "5eU6xO951FQy99CkvLLl2Qvrz11YiuIeK+DWcOJAUCQ=",
+        "recordedFileInputs": {},
+        "recordedDirentsInputs": {},
+        "envVariables": {},
+        "generatedRepoSpecs": {
+          "zlib": {
+            "repoRuleId": "@@bazel_tools//tools/build_defs/repo:http.bzl%http_archive",
+            "attributes": {
+              "urls": [
+                "https://github.com/madler/zlib/archive/refs/tags/v1.3.1.tar.gz"
+              ],
+              "sha256": "17e88863f3600672ab49182f217281b6fc4d3c762bde361935e436a95214d05c",
+              "strip_prefix": "zlib-1.3.1",
+              "build_file": "@@//third_party/zlib:zlib_build.bzl"
             }
           }
         },
@@ -603,7 +705,7 @@
     "@@rules_buf+//buf:extensions.bzl%buf": {
       "general": {
         "bzlTransitiveDigest": "nziVPz62Pjv2JecWM9NXmhpU/OjKhPz1MT9++4ObLUw=",
-        "usagesDigest": "PS3kdJaFX+2F0kchA8HrXwkqTPRmoTWng5yz2eUpLaI=",
+        "usagesDigest": "FFNlhBvtNCnwGR2ELCL11UWxcVNM+/KXOd2anihjviU=",
         "recordedFileInputs": {},
         "recordedDirentsInputs": {},
         "envVariables": {},
@@ -612,7 +714,7 @@
             "repoRuleId": "@@rules_buf+//buf/internal:toolchain.bzl%buf_download_releases",
             "attributes": {
               "version": "v1.50.0",
-              "sha256": ""
+              "sha256": "736e74d1697dcf253bc60b2f0fb4389c39dbc7be68472a7d564a953df8b19d12"
             }
           }
         },

@@ -35,13 +35,13 @@ actionYMLs=$(
   find .github/actions \
     ! -name actions \
     -type f \
-    -name '*.yml'
+    -name '*.yaml'
 )
 
 workflowYMLs=$(
   find .github/workflows \
     -type f \
-    -name '*.yml'
+    -name '*.yaml'
 )
 
 exitcode=0

@@ -20,8 +20,10 @@ cd "${BUILD_WORKSPACE_DIRECTORY}"
 
 ###### script body ######
 
-readarray -t <<< "$(${go} list -f '{{.Dir}}' -m)"
-modules=("${MAPFILE[@]}")
+modules=()
+while IFS= read -r line; do
+  [[ -n ${line} ]] && modules+=("${line}")
+done < <(${go} list -f '{{.Dir}}' -m)
 
 excludeMods=(
   "hack/tools"
@@ -41,9 +43,8 @@ statuscode=0
 
 echo "Linting the following Go modules with golangci-lint:"
 for mod in "${modules[@]}"; do
-  echo "  ${mod}"
-  PATH="$(dirname "${go}"):${PATH}" GOROOT=$(${go} env GOROOT) GOPATH=$(${go} env GOPATH) GOCACHE=$(${go} env GOCACHE) CGO_ENABLED=0 ${golangcilint} run --timeout=15m "${mod}/..." >&2
-  statuscode=$?
+  printf "\t%s\n" "${mod}"
+  PATH="$(dirname "${go}"):${PATH}" GOROOT=$(${go} env GOROOT) GOPATH=$(${go} env GOPATH) GOCACHE=$(${go} env GOCACHE) CGO_ENABLED=0 ${golangcilint} run --timeout=15m "${mod}/..." >&2 || statuscode=$?
 done
 
 exit "${statuscode}"

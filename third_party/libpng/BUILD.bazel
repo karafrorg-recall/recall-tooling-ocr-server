@@ -1,0 +1,8 @@
+"""libpng BUILD file"""
+
+alias(
+    name = "libpng",
+    actual = "@libpng//:libpng",
+    visibility = ["//visibility:public"],
+)
+

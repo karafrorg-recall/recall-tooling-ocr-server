@@ -1,7 +1,9 @@
 load("@rules_cc//cc:defs.bzl", "cc_library")
 
-alias(
+cc_library(
     name = "leptonica",
-    actual = "@leptonica//:leptonica",
+    hdrs = glob(["include/leptonica/*.h"], allow_empty = True),
+    includes = ["include"],
+    linkopts = ["-Llib", "-llept"],
     visibility = ["//visibility:public"],
 )

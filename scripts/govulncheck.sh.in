@@ -28,9 +28,7 @@ PATH=$(dirname "${go}"):${PATH}
 
 check_module() {
   excluded_osvs=(
-    "GO-2025-3521" # Kubernetes GitRepo Volume Inadvertent Local Repository Access
-    "GO-2025-3547" # Kubernetes kube-apiserver Vulnerable to Race Condition
-    "GO-2025-3770" # Host Header Injection which Leads to Open Redirect in RedirectSlashes in github.com/go-chi/chi
+    ""
   )
 
   # shellcheck disable=SC2016 # The $ sign in the single quoted string is correct.
@@ -41,7 +39,6 @@ check_module() {
         group_by(.osv) |
         map( {"osv": .[0].osv, "summary": $osvs[.[0].osv], "traces": [.[] | [.trace[] | .module]]} ) |
         if length > 0 then halt_error(1) else .[] end'
-
 }
 
 check() {
@@ -49,8 +46,7 @@ check() {
 
   echo "Scanning Go vulnerability DB for known vulnerabilities in modules:"
   for mod in ${submodules}; do
-    echo "  ${mod}"
-    echo -n "  "
+    printf "\t%s\n" "${mod}"
     check_module "${mod}"
   done
 
@@ -58,7 +54,7 @@ check() {
 
 }
 
-if test -v SILENT; then
+if [[ -n ${SILENT+x} ]]; then
   check > /dev/null
 else
   check
