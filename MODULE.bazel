@@ -88,4 +88,4 @@ use_repo(tesseract_ext, "tesseract")
 
 # Tessdata (trained data files for Tesseract)
 tessdata_ext = use_extension("//third_party/tessdata:tessdata_deps.bzl", "tessdata_deps")
-use_repo(tessdata_ext, "tessdata_eng")
+use_repo(tessdata_ext, "tessdata_eng", "tessdata_slk")

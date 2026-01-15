@@ -3,7 +3,10 @@ load("@rules_go//go:def.bzl", "go_binary", "go_library")
 # gazelle:ignore
 go_binary(
     name = "recal_tooling_ocr_server",
-    data = ["@tessdata_eng//file:eng.traineddata"],
+    data = [
+        "@tessdata_eng//file:eng.traineddata",
+        "@tessdata_slk//file:slk.traineddata"
+    ],
     embed = [":recal_tooling_ocr_server_lib"],
     env = {
         "TESSDATA_RLOCATION": "$(rlocationpath @tessdata_eng//file:eng.traineddata)",

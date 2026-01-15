@@ -5,3 +5,9 @@ filegroup(
     srcs = ["@tessdata_eng//file:eng.traineddata"],
     visibility = ["//visibility:public"],
 )
+
+filegroup(
+    name = "slk",
+    srcs = ["@tessdata_slk//file:slk.traineddata"],
+    visibility = ["//visibility:public"],
+)

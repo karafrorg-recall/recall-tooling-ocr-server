@@ -440,7 +440,7 @@
     },
     "//third_party/tessdata:tessdata_deps.bzl%tessdata_deps": {
       "general": {
-        "bzlTransitiveDigest": "m3l3nK5J4qCb4QPPwRRakD/qnTaW7j7KUdFOHHav1l0=",
+        "bzlTransitiveDigest": "2CY0cwAXreznut/rWeYTW/qfKUFM4bTftgGHh/H23Jg=",
         "usagesDigest": "Zq1MaqQ/qlZLYBHMSGPsSSE01Hg2vLFTRoDB0xFg0YY=",
         "recordedFileInputs": {},
         "recordedDirentsInputs": {},
@@ -454,6 +454,16 @@
               ],
               "sha256": "7d4322bd2a7749724879683fc3912cb542f19906c83bcc1a52132556427170b2",
               "downloaded_file_path": "eng.traineddata"
+            }
+          },
+          "tessdata_slk": {
+            "repoRuleId": "@@bazel_tools//tools/build_defs/repo:http.bzl%http_file",
+            "attributes": {
+              "urls": [
+                "https://github.com/tesseract-ocr/tessdata_fast/raw/main/slk.traineddata"
+              ],
+              "sha256": "fbcc400a9c74c6a13d922fcb1211b655d1b165387b675ed75cd2dbd756b974a5",
+              "downloaded_file_path": "slk.traineddata"
             }
           }
         },
