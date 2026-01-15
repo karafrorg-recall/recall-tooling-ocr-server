@@ -2,8 +2,14 @@ load("@rules_cc//cc:defs.bzl", "cc_library")
 
 cc_library(
     name = "leptonica",
-    hdrs = glob(["include/leptonica/*.h"], allow_empty = True),
+    hdrs = glob(
+        ["include/leptonica/*.h"],
+        allow_empty = True,
+    ),
     includes = ["include"],
-    linkopts = ["-Llib", "-llept"],
+    linkopts = [
+        "-Llib",
+        "-llept",
+    ],
     visibility = ["//visibility:public"],
 )

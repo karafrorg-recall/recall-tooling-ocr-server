@@ -5,5 +5,3 @@ filegroup(
     srcs = ["@tessdata_eng//file:eng.traineddata"],
     visibility = ["//visibility:public"],
 )
-
-

@@ -2,7 +2,10 @@ module github.com/karafrorg-recall/recall-tooling-ocr-server
 
 go 1.25.3
 
-require github.com/otiai10/gosseract/v2 v2.4.1
+require (
+	github.com/bazelbuild/rules_go v0.59.0
+	github.com/otiai10/gosseract/v2 v2.4.1
+)
 
 require (
 	4d63.com/gocheckcompilerdirectives v1.3.0 // indirect

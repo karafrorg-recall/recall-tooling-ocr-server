@@ -5,4 +5,3 @@ alias(
     actual = "@libpng//:libpng",
     visibility = ["//visibility:public"],
 )
-

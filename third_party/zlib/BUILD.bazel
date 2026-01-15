@@ -5,4 +5,3 @@ alias(
     actual = "@zlib//:zlib",
     visibility = ["//visibility:public"],
 )
-
